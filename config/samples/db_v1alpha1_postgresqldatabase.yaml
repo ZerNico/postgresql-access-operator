@@ -1,0 +1,11 @@
+apiVersion: db.zernico.de/v1alpha1
+kind: PostgreSQLDatabase
+metadata:
+  name: my-app
+  namespace: myapp-staging
+spec:
+  postgresRef:
+    name: postgresql-staging
+    namespace: postgresql
+  name: "myapp_staging"
+  cleanupPolicy: Skip

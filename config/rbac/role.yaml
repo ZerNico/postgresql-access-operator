@@ -1,0 +1,49 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - db.zernico.de
+  resources:
+  - postgresqldatabases
+  - postgresqlgrants
+  - postgresqls
+  - postgresqlusers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - db.zernico.de
+  resources:
+  - postgresqldatabases/finalizers
+  - postgresqlgrants/finalizers
+  - postgresqls/finalizers
+  - postgresqlusers/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - db.zernico.de
+  resources:
+  - postgresqldatabases/status
+  - postgresqlgrants/status
+  - postgresqls/status
+  - postgresqlusers/status
+  verbs:
+  - get
+  - patch
+  - update

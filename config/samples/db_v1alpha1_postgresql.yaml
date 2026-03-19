@@ -1,0 +1,13 @@
+apiVersion: db.zernico.de/v1alpha1
+kind: PostgreSQL
+metadata:
+  name: postgresql-staging
+  namespace: postgresql
+spec:
+  host: "postgresql-staging.postgresql.svc.cluster.local"
+  port: 5432
+  database: "postgres"
+  superuserUsername: "postgres"
+  superuserSecretKeyRef:
+    name: postgresql-staging-root
+    key: password

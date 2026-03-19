@@ -1,0 +1,35 @@
+# Default values for postgresql-access-operator
+
+# Whether the operator should watch all namespaces (cluster-wide)
+clusterWide: true
+
+image:
+  repository: ghcr.io/zernico/postgresql-access-operator
+  tag: "0.1.0"
+  pullPolicy: IfNotPresent
+
+# Number of operator replicas
+replicaCount: 1
+
+# Resource requests and limits for the operator pod
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+# Service account configuration
+serviceAccount:
+  create: true
+  name: postgresql-access-operator
+
+# Leader election for HA deployments
+leaderElection:
+  enabled: true
+
+# Metrics configuration
+metrics:
+  enabled: false
+  bindAddress: ":8080"

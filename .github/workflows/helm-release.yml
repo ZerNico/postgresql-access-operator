@@ -1,0 +1,52 @@
+name: Helm Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  release:
+    name: Release Helm charts
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: Install Helm
+        uses: azure/setup-helm@v4
+
+      - name: Ensure gh-pages branch exists
+        run: |
+          if ! git ls-remote --heads origin gh-pages | grep -q gh-pages; then
+            echo "Creating gh-pages branch..."
+            git checkout --orphan gh-pages
+            git rm -rf . 2>/dev/null || true
+            echo '<!DOCTYPE html><html><body>Helm chart repo</body></html>' > index.html
+            git add index.html
+            git commit -m "Initialize gh-pages branch"
+            git push origin gh-pages
+            git checkout main
+          fi
+
+      - name: Package CRDs chart
+        run: helm package charts/crds/ -d .cr-release-packages
+
+      - name: Package operator chart
+        run: helm package charts/operator/ -d .cr-release-packages
+
+      - name: Run chart-releaser
+        uses: helm/chart-releaser-action@v1.7.0
+        with:
+          skip_packaging: true
+          mark_as_latest: false
+          skip_existing: true
+        env:
+          CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

@@ -1,0 +1,15 @@
+apiVersion: db.zernico.de/v1alpha1
+kind: PostgreSQLGrant
+metadata:
+  name: my-app
+  namespace: myapp-staging
+spec:
+  postgresRef:
+    name: postgresql-staging
+    namespace: postgresql
+  privileges:
+    - "ALL PRIVILEGES"
+  database: "myapp_staging"
+  schema: "public"
+  role: "myapp_staging"
+  cleanupPolicy: Skip
