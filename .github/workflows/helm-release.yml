@@ -33,7 +33,7 @@ jobs:
             git add index.html
             git commit -m "Initialize gh-pages branch"
             git push origin gh-pages
-            git checkout main
+            git checkout "$GITHUB_REF_NAME"
           fi
 
       - name: Package CRDs chart
@@ -46,7 +46,6 @@ jobs:
         uses: helm/chart-releaser-action@v1.7.0
         with:
           skip_packaging: true
-          mark_as_latest: false
           skip_existing: true
         env:
           CR_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
