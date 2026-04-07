@@ -138,12 +138,36 @@ env:
 
 ## Installation
 
-### Via Helm
+The Helm charts are published to **two channels** on every release. Pick whichever your tooling prefers.
+
+### Via Helm (OCI, recommended)
+
+Pulls directly from GHCR -- no `helm repo add` needed.
+
+```bash
+# CRDs
+helm install postgresql-access-operator-crds \
+  oci://ghcr.io/zernico/charts/postgresql-access-operator-crds \
+  --version 0.1.1
+
+# Operator
+helm install postgresql-access-operator \
+  oci://ghcr.io/zernico/charts/postgresql-access-operator \
+  --version 0.1.1 \
+  --namespace postgresql \
+  --create-namespace \
+  --set clusterWide=true
+```
+
+Requires Helm 3.8+.
+
+### Via Helm (classic chart repository)
 
 ```bash
 helm repo add postgresql-access-operator https://zernico.github.io/postgresql-access-operator
-helm install postgresql-access-operator-crds postgresql-access-operator/crds
-helm install postgresql-access-operator postgresql-access-operator/operator \
+helm repo update
+helm install postgresql-access-operator-crds postgresql-access-operator/postgresql-access-operator-crds
+helm install postgresql-access-operator postgresql-access-operator/postgresql-access-operator \
   --namespace postgresql \
   --create-namespace \
   --set clusterWide=true
@@ -153,7 +177,7 @@ helm install postgresql-access-operator postgresql-access-operator/operator \
 
 ```bash
 make install      # Install CRDs
-make deploy IMG=ghcr.io/zernico/postgresql-access-operator:0.1.0
+make deploy IMG=ghcr.io/zernico/postgresql-access-operator:0.1.1
 ```
 
 ## Development
