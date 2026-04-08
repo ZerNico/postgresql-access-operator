@@ -3,10 +3,10 @@ entries:
   postgresql-access-operator:
   - apiVersion: v2
     appVersion: 0.1.1
-    created: "2026-04-08T12:23:58.151125405Z"
+    created: "2026-04-08T15:55:31.898102964Z"
     description: A Kubernetes operator that manages PostgreSQL databases, roles, and
       grants on existing PostgreSQL instances
-    digest: 8070c05431e5dec702ba7b3c9c57467cb5c69fb3a4197a411ef5785186734dc1
+    digest: 8f8f2174f31422a18ce2da1bf3877d2659673a92e62a8c81d9026fa6643c3e59
     name: postgresql-access-operator
     type: application
     urls:
@@ -15,12 +15,12 @@ entries:
   postgresql-access-operator-crds:
   - apiVersion: v2
     appVersion: 0.1.1
-    created: "2026-04-08T12:23:58.151311952Z"
+    created: "2026-04-08T15:55:31.898339085Z"
     description: CRDs for the PostgreSQL Access Operator
-    digest: 9a8dabc85c88d811a08db4708d8ea2aee496a35e2ea410dc88539b21aa027dfd
+    digest: c253397b0679eb85376634340defda45e3f6d34616545bf17e710c30039f39b1
     name: postgresql-access-operator-crds
     type: application
     urls:
     - https://zernico.github.io/postgresql-access-operator/postgresql-access-operator-crds-0.1.1.tgz
     version: 0.1.1
-generated: "2026-04-08T12:23:58.150786644Z"
+generated: "2026-04-08T15:55:31.89733232Z"
