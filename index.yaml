@@ -2,8 +2,19 @@ apiVersion: v1
 entries:
   postgresql-access-operator:
   - apiVersion: v2
+    appVersion: 0.1.3
+    created: "2026-04-09T14:09:25.264133396Z"
+    description: A Kubernetes operator that manages PostgreSQL databases, roles, and
+      grants on existing PostgreSQL instances
+    digest: 6f40964fdbb9797ed2c7d06438e151864024bef7db7e6ac0a2b846c043e62c2d
+    name: postgresql-access-operator
+    type: application
+    urls:
+    - https://zernico.github.io/postgresql-access-operator/postgresql-access-operator-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 0.1.2
-    created: "2026-04-09T10:11:22.462871087Z"
+    created: "2026-04-09T14:09:25.263838477Z"
     description: A Kubernetes operator that manages PostgreSQL databases, roles, and
       grants on existing PostgreSQL instances
     digest: 5396bb5c5f7007522a77d3a726e9c81f362aa23db0577093b5d40c8077c77999
@@ -14,7 +25,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.1.1
-    created: "2026-04-09T10:11:22.462656249Z"
+    created: "2026-04-09T14:09:25.26358224Z"
     description: A Kubernetes operator that manages PostgreSQL databases, roles, and
       grants on existing PostgreSQL instances
     digest: 8f8f2174f31422a18ce2da1bf3877d2659673a92e62a8c81d9026fa6643c3e59
@@ -25,8 +36,18 @@ entries:
     version: 0.1.1
   postgresql-access-operator-crds:
   - apiVersion: v2
+    appVersion: 0.1.3
+    created: "2026-04-09T14:09:25.2658499Z"
+    description: CRDs for the PostgreSQL Access Operator
+    digest: 5b907dbabcc31e54797e03de32b0cc68399260d52b58bfb8e29641ad20af230c
+    name: postgresql-access-operator-crds
+    type: application
+    urls:
+    - https://zernico.github.io/postgresql-access-operator/postgresql-access-operator-crds-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 0.1.2
-    created: "2026-04-09T10:11:22.46331955Z"
+    created: "2026-04-09T14:09:25.264544761Z"
     description: CRDs for the PostgreSQL Access Operator
     digest: e3c042438e25d3576cedaaac92b551c2c9ef68c7f8ce28f289940d4eb8c64cb7
     name: postgresql-access-operator-crds
@@ -36,7 +57,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 0.1.1
-    created: "2026-04-09T10:11:22.463105474Z"
+    created: "2026-04-09T14:09:25.264346252Z"
     description: CRDs for the PostgreSQL Access Operator
     digest: c253397b0679eb85376634340defda45e3f6d34616545bf17e710c30039f39b1
     name: postgresql-access-operator-crds
@@ -44,4 +65,4 @@ entries:
     urls:
     - https://zernico.github.io/postgresql-access-operator/postgresql-access-operator-crds-0.1.1.tgz
     version: 0.1.1
-generated: "2026-04-09T10:11:22.462302446Z"
+generated: "2026-04-09T14:09:25.26319014Z"
