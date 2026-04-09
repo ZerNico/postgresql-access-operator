@@ -2,5 +2,5 @@ apiVersion: v2
 name: postgresql-access-operator-crds
 description: CRDs for the PostgreSQL Access Operator
 type: application
-version: 0.1.1
-appVersion: "0.1.1"
+version: 0.1.2
+appVersion: "0.1.2"

@@ -148,12 +148,12 @@ Pulls directly from GHCR -- no `helm repo add` needed.
 # CRDs
 helm install postgresql-access-operator-crds \
   oci://ghcr.io/zernico/charts/postgresql-access-operator-crds \
-  --version 0.1.1
+  --version 0.1.2
 
 # Operator
 helm install postgresql-access-operator \
   oci://ghcr.io/zernico/charts/postgresql-access-operator \
-  --version 0.1.1 \
+  --version 0.1.2 \
   --namespace postgresql \
   --create-namespace \
   --set clusterWide=true
@@ -177,7 +177,7 @@ helm install postgresql-access-operator postgresql-access-operator/postgresql-ac
 
 ```bash
 make install      # Install CRDs
-make deploy IMG=ghcr.io/zernico/postgresql-access-operator:0.1.1
+make deploy IMG=ghcr.io/zernico/postgresql-access-operator:0.1.2
 ```
 
 ## Development
