@@ -200,7 +200,8 @@ jobs:
             (
               cd "$WORKTREE_DIR"
               git checkout --orphan gh-pages
-              rm -rf ./*
+              git rm -rf . >/dev/null 2>&1 || true
+              rm -rf ./* ./.??* 2>/dev/null || true
             )
           fi
 

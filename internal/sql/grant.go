@@ -69,6 +69,12 @@ func (c *Client) GrantPrivileges(ctx context.Context, opts GrantOpts) error {
 		return fmt.Errorf("granting schema usage: %w", err)
 	}
 
+	// 5. Grant CREATE on schema so the role can create tables (required for PG 15+)
+	stmt = fmt.Sprintf("GRANT CREATE ON SCHEMA %s TO %s", quotedSchema, quotedRole)
+	if _, err := c.conn.Exec(ctx, stmt); err != nil {
+		return fmt.Errorf("granting schema create: %w", err)
+	}
+
 	return nil
 }
 
@@ -91,6 +97,12 @@ func (c *Client) RevokePrivileges(ctx context.Context, opts GrantOpts) error {
 		privs, quotedSchema, quotedRole)
 	if _, err := c.conn.Exec(ctx, stmt); err != nil {
 		return fmt.Errorf("revoking schema privileges: %w", err)
+	}
+
+	// Revoke CREATE on schema
+	stmt = fmt.Sprintf("REVOKE CREATE ON SCHEMA %s FROM %s", quotedSchema, quotedRole)
+	if _, err := c.conn.Exec(ctx, stmt); err != nil {
+		return fmt.Errorf("revoking schema create: %w", err)
 	}
 
 	// Revoke database-level grants

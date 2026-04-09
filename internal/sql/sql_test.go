@@ -233,6 +233,29 @@ func TestGrantAndRevokePrivileges(t *testing.T) {
 		t.Fatalf("GrantPrivileges (idempotent) failed: %v", err)
 	}
 
+	// Verify role can CREATE TABLE (PG 15+ requires explicit CREATE on schema)
+	roleClient, err := Connect(ctx, ConnectConfig{
+		Host:     host,
+		Port:     port,
+		Database: dbName,
+		Username: roleName,
+		Password: "grantpass",
+	})
+	if err != nil {
+		t.Fatalf("Failed to connect as granted role: %v", err)
+	}
+	defer func() { _ = roleClient.Close(ctx) }()
+
+	if _, err := roleClient.conn.Exec(ctx, "CREATE TABLE test_table (id serial PRIMARY KEY, name text)"); err != nil {
+		t.Fatalf("Role should be able to CREATE TABLE after grant: %v", err)
+	}
+	if _, err := roleClient.conn.Exec(ctx, "INSERT INTO test_table (name) VALUES ('hello')"); err != nil {
+		t.Fatalf("Role should be able to INSERT after grant: %v", err)
+	}
+	if _, err := roleClient.conn.Exec(ctx, "DROP TABLE test_table"); err != nil {
+		t.Fatalf("Role should be able to DROP TABLE after grant: %v", err)
+	}
+
 	// Revoke privileges
 	if err := dbClient.RevokePrivileges(ctx, opts); err != nil {
 		t.Fatalf("RevokePrivileges failed: %v", err)
